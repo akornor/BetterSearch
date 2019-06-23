@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import SQLite
 
 class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelegate, NSTableViewDataSource {
 
