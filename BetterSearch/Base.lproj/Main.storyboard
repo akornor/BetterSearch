@@ -701,7 +701,7 @@
                             </searchField>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PdS-e1-ROQ">
                                 <rect key="frame" x="20" y="35" width="320" height="252"/>
-                                <clipView key="contentView" id="8fA-bN-jgf">
+                                <clipView key="contentView" drawsBackground="NO" id="8fA-bN-jgf">
                                     <rect key="frame" x="1" y="1" width="318" height="250"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -725,13 +725,13 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="kTE-fV-FSS">
+                                                        <tableCellView identifier="cell" id="fB0-XE-TZj">
                                                             <rect key="frame" x="1" y="1" width="315" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="cell" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jJh-mk-RTM">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cYL-GR-pU5">
                                                                     <rect key="frame" x="0.0" y="0.0" width="315" height="17"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="sza-4T-cHl">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="9Jn-qK-bgh">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -739,12 +739,12 @@
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="jJh-mk-RTM" firstAttribute="leading" secondItem="kTE-fV-FSS" secondAttribute="leading" constant="2" id="8Ky-bb-xYb"/>
-                                                                <constraint firstItem="jJh-mk-RTM" firstAttribute="centerY" secondItem="kTE-fV-FSS" secondAttribute="centerY" id="9xi-vJ-Gkw"/>
-                                                                <constraint firstItem="jJh-mk-RTM" firstAttribute="centerX" secondItem="kTE-fV-FSS" secondAttribute="centerX" id="z9X-9r-HAw"/>
+                                                                <constraint firstItem="cYL-GR-pU5" firstAttribute="centerX" secondItem="fB0-XE-TZj" secondAttribute="centerX" id="9eE-Lo-eTy"/>
+                                                                <constraint firstItem="cYL-GR-pU5" firstAttribute="centerY" secondItem="fB0-XE-TZj" secondAttribute="centerY" id="Bvs-zm-FZJ"/>
+                                                                <constraint firstItem="cYL-GR-pU5" firstAttribute="leading" secondItem="fB0-XE-TZj" secondAttribute="leading" constant="2" id="Dtz-GS-dnh"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="textField" destination="jJh-mk-RTM" id="Pk4-TY-ule"/>
+                                                                <outlet property="textField" destination="cYL-GR-pU5" id="7sM-93-OBZ"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
@@ -756,6 +756,7 @@
                                             </connections>
                                         </tableView>
                                     </subviews>
+                                    <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="gNw-v2-EWm">
                                     <rect key="frame" x="1" y="161" width="318" height="16"/>
