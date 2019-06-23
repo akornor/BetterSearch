@@ -9,12 +9,17 @@
 import Cocoa
 import SQLite
 
-class ViewController: NSViewController, NSSearchFieldDelegate {
+class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelegate, NSTableViewDataSource {
 
     @IBOutlet weak var searchField: NSSearchField!
+    @IBOutlet weak var tableView: NSTableView!
+    
+    var searchResults = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
     override var representedObject: Any? {
@@ -30,13 +35,11 @@ class ViewController: NSViewController, NSSearchFieldDelegate {
     
     func controlTextDidEndEditing(_ obj: Notification) {
         let query = searchField.stringValue
-        do {
-            for row in try! (DataStore.shared.db?.prepare("select * from message where text like '%\(query)%' limit 10"))!{
-                print(row[2])
-            }
-        } catch{
-            print("error")
+        for row in try! (DataStore.shared.db?.run("select * from message where text like '%\(query)%' limit 10"))!{
+            print(row[2] as Any)
+            searchResults.append((row[2] as? String)!)
         }
+        print("clicked")
     }
     
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
@@ -44,6 +47,16 @@ class ViewController: NSViewController, NSSearchFieldDelegate {
         print(searchField.stringValue)
     }
     
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return 5
+    }
     
-
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cell"), owner: nil) as? NSTableCellView {
+            cell.textField?.stringValue = searchResults[row]
+            print(cell)
+            return cell
+        }
+        return nil
+    }
 }
