@@ -43,7 +43,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     
     func controlTextDidEndEditing(_ obj: Notification) {
         let query = searchField.stringValue
-        for row in try! (DataStore.shared.db?.run("select * from message where text like '%\(query)%' limit 10"))!{
+        for row in try! (DataStore.shared.db?.run("select * from message where text like '%\(query)%' limit 20"))!{
             searchResults.append((row[2] as? String)!)
             reloadData()
         }
