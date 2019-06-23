@@ -13,7 +13,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     @IBOutlet weak var searchField: NSSearchField!
     @IBOutlet weak var tableView: NSTableView!
     
-    var searchResults = ["cat", "dog", "egg", "yam, potato", "papa", "egg" ]
+    var searchResults = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +38,12 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
             print(row[2] as Any)
             searchResults.append((row[2] as? String)!)
         }
+        tableView.reloadData()
     }
     
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         print("end searching")
-        print(searchField.stringValue)
+        searchResults = []
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
