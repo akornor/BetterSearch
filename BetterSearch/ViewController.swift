@@ -27,23 +27,24 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     }
     }
     
+    func reloadData(){
+        tableView.reloadData()
+    }
+    
     func searchFieldDidStartSearching(_ sender: NSSearchField) {
-        print("start searching")
-        print(searchField.stringValue)
     }
     
     func controlTextDidEndEditing(_ obj: Notification) {
         let query = searchField.stringValue
         for row in try! (DataStore.shared.db?.run("select * from message where text like '%\(query)%' limit 10"))!{
-            print(row[2] as Any)
             searchResults.append((row[2] as? String)!)
+            reloadData()
         }
-        tableView.reloadData()
     }
     
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
-        print("end searching")
         searchResults = []
+        reloadData()
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
