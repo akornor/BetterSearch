@@ -19,13 +19,20 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.target = self
+        tableView.doubleAction = #selector(tableViewDoubleClick(_:))
     }
 
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
+        }
     }
+    
+    @objc func tableViewDoubleClick(_ sender:AnyObject) {
+        print("double clicked")
     }
+
     
     func reloadData(){
         tableView.reloadData()
