@@ -21,6 +21,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         tableView.dataSource = self
         tableView.target = self
         tableView.doubleAction = #selector(tableViewDoubleClick(_:))
+        reloadData()
     }
 
     override var representedObject: Any? {
