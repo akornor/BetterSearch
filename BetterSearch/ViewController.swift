@@ -59,11 +59,29 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         return searchResults.count
     }
     
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cell"), owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = searchResults[row]
-            return cell
+    private func boldedString(with baseString: String, searchString: String, fontSize: CGFloat) -> NSAttributedString? {
+        guard let regex = try? NSRegularExpression(pattern: searchString, options: .caseInsensitive) else {
+            return nil
         }
-        return nil
+        
+        let attributedString = NSMutableAttributedString(string: baseString)
+        let boldFont = NSFont.systemFont(ofSize: fontSize, weight: .bold)
+        regex
+            .matches(in: baseString, options: .withTransparentBounds,
+                     range: NSRange(location: 0, length: baseString.utf16.count))
+            .forEach {
+                attributedString.addAttributes([.font: boldFont], range: $0.range)
+        }
+        return attributedString
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cell"), owner: nil) as? NSTableCellView else{
+            fatalError("Unable to find table view cell.")
+        }
+        let text = searchResults[row]
+        let query = searchField.stringValue
+        cell.textField?.attributedStringValue = boldedString(with: text, searchString: query, fontSize: 13)!
+        return cell
     }
 }
