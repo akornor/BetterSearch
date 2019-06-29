@@ -30,6 +30,17 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         }
     }
     
+    @IBAction func search(_ sender: Any) {
+        searchResults = []
+        let query = searchField.stringValue
+        if query == ""{
+            return
+        }
+        for row in try! (DataStore.shared.db?.run("select * from message where text like '%\(query)%' limit 20"))!{
+            searchResults.append((row[2] as? String)!)
+            reloadData()
+        }
+    }
     @objc func tableViewDoubleClick(_ sender:AnyObject) {
         print("double clicked")
     }
@@ -40,11 +51,6 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     }
     
     func searchFieldDidStartSearching(_ sender: NSSearchField) {
-        let query = searchField.stringValue
-        for row in try! (DataStore.shared.db?.run("select * from message where text like '%\(query)%' limit 20"))!{
-            searchResults.append((row[2] as? String)!)
-            reloadData()
-        }
     }
     
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
@@ -80,5 +86,5 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         let query = searchField.stringValue
         cell.textField?.attributedStringValue = boldedString(with: text, searchString: query, fontSize: 13)!
         return cell
-    }
+}
 }

@@ -690,10 +690,13 @@
                         <subviews>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZa-c4-dpU">
                                 <rect key="frame" x="20" y="302" width="320" height="22"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search all messages" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="TKE-BI-lsz">
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search all messages" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" id="TKE-BI-lsz">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <connections>
+                                        <action selector="search:" target="XfG-lQ-9wD" id="htf-6g-jup"/>
+                                    </connections>
                                 </searchFieldCell>
                                 <connections>
                                     <outlet property="delegate" destination="XfG-lQ-9wD" id="flY-s3-aaY"/>
