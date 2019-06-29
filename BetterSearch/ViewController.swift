@@ -30,8 +30,12 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         }
     }
     
-    @IBAction func search(_ sender: Any) {
+    func clearSearchResults(){
         searchResults = []
+    }
+    
+    @IBAction func search(_ sender: Any) {
+        clearSearchResults()
         let query = searchField.stringValue
         if query == ""{
             return
@@ -54,7 +58,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     }
     
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
-        searchResults = []
+        clearSearchResults()
         reloadData()
     }
     
