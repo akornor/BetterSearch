@@ -37,7 +37,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     @IBAction func search(_ sender: Any) {
         clearSearchResults()
         let query = searchField.stringValue
-        if query == ""{
+        if query.isEmpty {
             return
         }
         for row in try! (DataStore.shared.db?.run("select * from message where text like '%\(query)%' limit 20"))!{
