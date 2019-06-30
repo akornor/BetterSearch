@@ -13,7 +13,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     @IBOutlet weak var searchField: NSSearchField!
     @IBOutlet weak var tableView: NSTableView!
     
-    var searchResults = [String]()
+    var searchResults = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,8 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         tableView.dataSource = self
         tableView.target = self
         tableView.doubleAction = #selector(tableViewDoubleClick(_:))
+        tableView.rowHeight = 35.0
+        tableView.usesAlternatingRowBackgroundColors = true
         reloadData()
     }
 
@@ -40,8 +42,12 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         if query.isEmpty {
             return
         }
-        for row in try! (DataStore.shared.db?.run("select * from message where text like '%\(query)%' limit 20"))!{
-            searchResults.append((row[2] as? String)!)
+        for row in try! (DataStore.shared.db?.run("select text, date, id from message join handle on handle.ROWID = message.handle_id where text like '%\(query)%' limit 20"))!{
+            let text = (row[0] as? String)!
+//            let date = (row[1] as? String)!
+            let id = (row[2] as? String)!
+            let message = Message(text: text, date: nil, id: id)
+            searchResults.append(message)
             reloadData()
         }
     }
@@ -83,12 +89,13 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cell"), owner: nil) as? NSTableCellView else{
+        guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cell"), owner: nil) as? MessageCellView else{
             fatalError("Unable to find table view cell.")
         }
-        let text = searchResults[row]
+        let message = searchResults[row]
         let query = searchField.stringValue
-        cell.textField?.attributedStringValue = boldedString(with: text, searchString: query, fontSize: 13)!
+        cell.numberTextField.stringValue = message.id!
+        cell.detailedTextField?.attributedStringValue = boldedString(with: (message.text)!, searchString: query, fontSize: 13)!
         return cell
 }
 }
