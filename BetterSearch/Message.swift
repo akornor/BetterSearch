@@ -11,6 +11,6 @@ import Foundation
 
 struct Message {
     var text: String?
-    var date: String?
+    var date: Int64?
     var id: String?
 }
