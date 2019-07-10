@@ -18,6 +18,11 @@ class DataStore{
         guard let url = Bundle.main.url(forResource: "chat", withExtension: "db") else{
             fatalError("Unable to find database file.")
         }
-        db = try! Connection(url.absoluteString, readonly: true)
+        do {
+            db = try Connection(url.absoluteString, readonly: true)
+        } catch let error {
+            print(error.localizedDescription)
+            fatalError("Unabled to make connection to database")
+        }
     }
 }
