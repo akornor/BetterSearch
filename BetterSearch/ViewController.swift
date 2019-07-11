@@ -24,7 +24,6 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         tableView.doubleAction = #selector(tableViewDoubleClick(_:))
         tableView.rowHeight = 35.0
         tableView.usesAlternatingRowBackgroundColors = true
-        reloadData()
     }
 
     override var representedObject: Any? {
@@ -66,7 +65,6 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         clearSearchResults()
-        reloadData()
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
