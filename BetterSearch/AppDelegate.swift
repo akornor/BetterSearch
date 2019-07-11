@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.target = self
         statusItem.button?.action = #selector(showSettings)
         
-        popoverView.contentViewController = ViewController.getFreshController()
+        popoverView.contentViewController = ViewController.getViewController()
         
         eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
             if let strongSelf = self, strongSelf.popoverView.isShown {

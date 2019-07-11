@@ -107,7 +107,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
 }
 
 extension ViewController{
-    static func getFreshController() -> ViewController {
+    static func getViewController() -> ViewController {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateController(withIdentifier: "ViewController") as? ViewController else{
             fatalError("Unable to find ViewController in the storyboard.")
