@@ -12,27 +12,40 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    var eventMonitor: EventMonitor?
+    let popoverView = NSPopover()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem.button?.title = "🕹"
         statusItem.button?.target = self
         statusItem.button?.action = #selector(showSettings)
+        
+        popoverView.contentViewController = ViewController.getFreshController()
+        
+        eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
+            if let strongSelf = self, strongSelf.popoverView.isShown {
+                strongSelf.closePopover(sender: event)
+            }
+        }
     }
     
     @objc func showSettings() {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateController(withIdentifier: "ViewController") as? ViewController else{
-            fatalError("Unable to find ViewController in the storyboard.")
+        if popoverView.isShown{
+            closePopover(sender: nil)
+        }else{
+            guard let button = statusItem.button else {
+                fatalError("Unable to find status item button.")
+            }
+            popoverView.behavior = .transient
+            popoverView.animates = false
+            popoverView.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
+            eventMonitor?.start()
         }
-        guard let button = statusItem.button else {
-            fatalError("Unable to find status item button.")
-        }
-        
-        let popoverView = NSPopover()
-        popoverView.contentViewController = vc
-        popoverView.behavior = .transient
-        popoverView.animates = false
-        popoverView.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
+    }
+    
+    func closePopover(sender: Any?) {
+        popoverView.performClose(sender)
+        eventMonitor?.stop()
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {

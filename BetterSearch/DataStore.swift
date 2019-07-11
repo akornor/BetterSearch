@@ -22,7 +22,7 @@ class DataStore{
             db = try Connection(url.absoluteString, readonly: true)
         } catch let error {
             print(error.localizedDescription)
-            fatalError("Unabled to make connection to database")
+            fatalError("Unable to make connection to database")
         }
     }
 }

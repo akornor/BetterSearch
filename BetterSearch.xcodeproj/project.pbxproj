@@ -17,6 +17,7 @@
 		0442247B22BEC840006AA5FC /* BetterSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442247A22BEC840006AA5FC /* BetterSearchUITests.swift */; };
 		047730E522C92CFB00706692 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047730E422C92CFB00706692 /* Message.swift */; };
 		04B750D622C9105900DE19A5 /* MessageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B750D522C9105900DE19A5 /* MessageCellView.swift */; };
+		04C8588B22D7647200C0C945 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C8588A22D7647200C0C945 /* EventMonitor.swift */; };
 		2BFCE136E200B36D4233D4B2 /* Pods_BetterSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 218CDC43E412AB1B57FA317A /* Pods_BetterSearchTests.framework */; };
 		9759F789E60F0F9368B518A4 /* Pods_BetterSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB7C61CCB7657D58327E169F /* Pods_BetterSearch.framework */; };
 		D58000B1C992ADA3A6E7EC3E /* Pods_BetterSearchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 905BD1071D265B2E247504F8 /* Pods_BetterSearchUITests.framework */; };
@@ -57,6 +58,7 @@
 		0442247C22BEC840006AA5FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		047730E422C92CFB00706692 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		04B750D522C9105900DE19A5 /* MessageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellView.swift; sourceTree = "<group>"; };
+		04C8588A22D7647200C0C945 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		17DBD586E565012F6AF1D66D /* Pods-BetterSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterSearchTests.release.xcconfig"; path = "Target Support Files/Pods-BetterSearchTests/Pods-BetterSearchTests.release.xcconfig"; sourceTree = "<group>"; };
 		218CDC43E412AB1B57FA317A /* Pods_BetterSearchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BetterSearchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EC94962D085A4F48620646 /* Pods-BetterSearchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterSearchUITests.release.xcconfig"; path = "Target Support Files/Pods-BetterSearchUITests/Pods-BetterSearchUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				04322A9422BEF501008BF0C3 /* DataStore.swift */,
 				04B750D522C9105900DE19A5 /* MessageCellView.swift */,
 				047730E422C92CFB00706692 /* Message.swift */,
+				04C8588A22D7647200C0C945 /* EventMonitor.swift */,
 			);
 			path = BetterSearch;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				04B750D622C9105900DE19A5 /* MessageCellView.swift in Sources */,
 				0442245F22BEC83E006AA5FC /* ViewController.swift in Sources */,
 				047730E522C92CFB00706692 /* Message.swift in Sources */,
+				04C8588B22D7647200C0C945 /* EventMonitor.swift in Sources */,
 				04322A9522BEF501008BF0C3 /* DataStore.swift in Sources */,
 				0442245D22BEC83E006AA5FC /* AppDelegate.swift in Sources */,
 			);

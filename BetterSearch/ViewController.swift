@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Contacts
 
 class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelegate, NSTableViewDataSource {
 
@@ -34,6 +35,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     
     func clearSearchResults(){
         searchResults = []
+        reloadData()
     }
     
     @IBAction func search(_ sender: Any) {
@@ -42,7 +44,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         if query.isEmpty {
             return
         }
-        for row in try! (DataStore.shared.db?.run("select text, date, id from message join handle on handle.ROWID = message.handle_id where text like '%\(query)%' limit 20"))!{
+        for row in try! (DataStore.shared.db?.run("select text, date, id from message join handle on handle.ROWID = message.handle_id where text like '%\(query)%' limit 60"))!{
             let text = (row[0] as? String)!
             let date = (row[1] as? Int64)!
             let id = (row[2] as? String)!
@@ -102,4 +104,14 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         }
         return cell
 }
+}
+
+extension ViewController{
+    static func getFreshController() -> ViewController {
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateController(withIdentifier: "ViewController") as? ViewController else{
+            fatalError("Unable to find ViewController in the storyboard.")
+        }
+        return vc
+    }
 }
