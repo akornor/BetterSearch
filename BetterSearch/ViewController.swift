@@ -45,12 +45,11 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
             return
         }
         for row in try! (DataStore.shared.db?.run("select text, date, id from message join handle on handle.ROWID = message.handle_id where text like '%\(query)%' limit 60"))!{
-            let text = (row[0] as? String)!
-            let date = (row[1] as? Int64)!
-            let id = (row[2] as? String)!
-            let message = Message(text: text, date: date, id: id)
-            searchResults.append(message)
-            reloadData()
+            if let text = row[0] as? String, let date = row[1] as? Int64, let id = row[2] as? String{
+                let message = Message(text: text, date: date, id: id)
+                searchResults.append(message)
+                reloadData()
+            }
         }
     }
     @objc func tableViewDoubleClick(_ sender:AnyObject) {
