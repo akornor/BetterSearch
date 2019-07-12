@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let popoverView = NSPopover()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem.button?.title = "🕹"
+        statusItem.button?.title = "🔍"
         statusItem.button?.target = self
         statusItem.button?.action = #selector(showSettings)
         
