@@ -750,9 +750,7 @@
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AAE-Uc-7Id" secondAttribute="trailing" constant="20" symbolic="YES" id="A1a-QC-Wdc"/>
                                                                 <constraint firstItem="AAE-Uc-7Id" firstAttribute="top" secondItem="cYL-GR-pU5" secondAttribute="bottom" constant="3" id="ipH-bl-HDg"/>
-                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cYL-GR-pU5" secondAttribute="trailing" constant="20" symbolic="YES" id="khf-Es-7FR"/>
                                                                 <constraint firstItem="AAE-Uc-7Id" firstAttribute="leading" secondItem="cYL-GR-pU5" secondAttribute="leading" id="kwq-bX-oah"/>
                                                                 <constraint firstItem="cYL-GR-pU5" firstAttribute="top" secondItem="fB0-XE-TZj" secondAttribute="top" id="tF6-b8-owy"/>
                                                                 <constraint firstItem="AAE-Uc-7Id" firstAttribute="leading" secondItem="fB0-XE-TZj" secondAttribute="leading" constant="2" id="tcm-kQ-M4X"/>
