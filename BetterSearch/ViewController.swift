@@ -52,6 +52,8 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         }
     }
     @objc func tableViewDoubleClick(_ sender:AnyObject) {
+        let url = URL(fileURLWithPath: "messages://open?message-guid=9B078248-4068-48E5-A1E2-F31C98FDD1D2")
+        NSWorkspace.shared.open(url)
         print("double clicked")
     }
 
