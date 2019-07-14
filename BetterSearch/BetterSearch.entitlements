@@ -8,5 +8,7 @@
 	<true/>
 	<key>com.apple.security.personal-information.addressbook</key>
 	<true/>
+	<key>com.apple.security.temporary-exception.files.home-relative-path.read-write</key>
+	<array/>
 </dict>
 </plist>

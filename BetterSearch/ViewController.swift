@@ -95,10 +95,8 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         }
         let message = searchResults[row]
         let query = searchField.stringValue
-        if let id = message.id {
+        if let id = message.id, let text = message.text {
             cell.numberTextField.stringValue = id
-        }
-        if let text = message.text {
             cell.detailedTextField?.attributedStringValue = boldedString(with: text, searchString: query, fontSize: 13)!
         }
         return cell
