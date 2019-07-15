@@ -22,7 +22,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         tableView.dataSource = self
         tableView.target = self
         tableView.doubleAction = #selector(tableViewDoubleClick(_:))
-        tableView.rowHeight = 40.0
+        tableView.rowHeight = 35.0
         tableView.usesAlternatingRowBackgroundColors = true
     }
 
