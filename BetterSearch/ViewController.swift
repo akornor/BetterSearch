@@ -62,9 +62,6 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         tableView.reloadData()
     }
     
-    func searchFieldDidStartSearching(_ sender: NSSearchField) {
-    }
-    
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         clearSearchResults()
     }
