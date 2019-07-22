@@ -9,6 +9,7 @@
 import Cocoa
 
 class MessageCellView: NSTableCellView {
-    @IBOutlet var numberTextField: NSTextField!
-    @IBOutlet var detailedTextField: NSTextField!
+    @IBOutlet var contactTextField: NSTextField!
+    @IBOutlet var messageTextField: NSTextField!
+    @IBOutlet var dateTextField: NSTextField!
 }

@@ -22,7 +22,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         tableView.dataSource = self
         tableView.target = self
         tableView.doubleAction = #selector(tableViewDoubleClick(_:))
-        tableView.rowHeight = 35.0
+        tableView.rowHeight = 41.0
         tableView.usesAlternatingRowBackgroundColors = true
     }
 
@@ -92,9 +92,10 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         }
         let message = searchResults[row]
         let query = searchField.stringValue
-        if let id = message.id, let text = message.text {
-            cell.numberTextField.stringValue = id
-            cell.detailedTextField?.attributedStringValue = boldedString(with: text, searchString: query, fontSize: 13)!
+        if let id = message.id, let text = message.text, let date = message.date {
+            cell.messageTextField?.attributedStringValue = boldedString(with: text, searchString: query, fontSize: 13)!
+            cell.contactTextField.stringValue = id
+            cell.dateTextField.stringValue = String(date)
         }
         return cell
 }
