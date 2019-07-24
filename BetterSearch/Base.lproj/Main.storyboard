@@ -733,7 +733,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cYL-GR-pU5">
-                                                                    <rect key="frame" x="0.0" y="15" width="315" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="15" width="96" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="hCX-5c-adu"/>
                                                                     </constraints>
@@ -767,9 +767,9 @@
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
+                                                                <constraint firstItem="lXt-G9-Hsz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cYL-GR-pU5" secondAttribute="trailing" constant="8" symbolic="YES" id="Krl-y3-2wc"/>
                                                                 <constraint firstItem="cYL-GR-pU5" firstAttribute="leading" secondItem="fB0-XE-TZj" secondAttribute="leading" constant="2" id="c4M-xh-MrF"/>
                                                                 <constraint firstItem="cYL-GR-pU5" firstAttribute="centerY" secondItem="lXt-G9-Hsz" secondAttribute="centerY" id="ckd-qi-PWs"/>
-                                                                <constraint firstAttribute="trailing" secondItem="cYL-GR-pU5" secondAttribute="trailing" constant="2" id="fIA-fc-G7C"/>
                                                                 <constraint firstItem="AAE-Uc-7Id" firstAttribute="top" secondItem="cYL-GR-pU5" secondAttribute="bottom" constant="2" id="ipH-bl-HDg"/>
                                                                 <constraint firstAttribute="trailing" secondItem="lXt-G9-Hsz" secondAttribute="trailing" constant="3" id="ob5-jT-CPk"/>
                                                                 <constraint firstAttribute="trailing" secondItem="AAE-Uc-7Id" secondAttribute="trailing" constant="2" id="ods-ZF-ORQ"/>
@@ -779,9 +779,7 @@
                                                             <connections>
                                                                 <outlet property="contactTextField" destination="cYL-GR-pU5" id="B0F-MD-gdO"/>
                                                                 <outlet property="dateTextField" destination="lXt-G9-Hsz" id="qeA-le-VIj"/>
-                                                                <outlet property="detailedTextField" destination="cYL-GR-pU5" id="3uR-MR-dzi"/>
                                                                 <outlet property="messageTextField" destination="AAE-Uc-7Id" id="kNB-q2-Eex"/>
-                                                                <outlet property="numberTextField" destination="AAE-Uc-7Id" id="1ZI-We-CTa"/>
                                                                 <outlet property="textField" destination="cYL-GR-pU5" id="piy-4z-fdh"/>
                                                             </connections>
                                                         </tableCellView>
@@ -805,6 +803,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <progressIndicator autoresizesSubviews="NO" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="4kp-W3-uNb">
+                                <rect key="frame" x="294" y="305" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="iZa-c4-dpU" secondAttribute="trailing" constant="20" id="2cX-RK-2zq"/>
@@ -813,10 +814,13 @@
                             <constraint firstItem="PdS-e1-ROQ" firstAttribute="trailing" secondItem="iZa-c4-dpU" secondAttribute="trailing" id="YZf-mE-mJf"/>
                             <constraint firstItem="iZa-c4-dpU" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="gUn-Vz-wYf"/>
                             <constraint firstItem="PdS-e1-ROQ" firstAttribute="top" secondItem="iZa-c4-dpU" secondAttribute="bottom" constant="20" id="mWG-xU-pPL"/>
+                            <constraint firstItem="4kp-W3-uNb" firstAttribute="leading" secondItem="iZa-c4-dpU" secondAttribute="trailing" constant="-46" id="oio-ex-lUL"/>
+                            <constraint firstItem="4kp-W3-uNb" firstAttribute="centerY" secondItem="iZa-c4-dpU" secondAttribute="centerY" id="pzW-2d-9TP"/>
                             <constraint firstItem="PdS-e1-ROQ" firstAttribute="leading" secondItem="iZa-c4-dpU" secondAttribute="leading" id="t7O-hm-Wll"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="progressIndicator" destination="4kp-W3-uNb" id="azN-n7-bOc"/>
                         <outlet property="searchField" destination="iZa-c4-dpU" id="qGm-EL-gZt"/>
                         <outlet property="tableView" destination="dfc-eR-7Vp" id="sZh-Sh-Foh"/>
                     </connections>
