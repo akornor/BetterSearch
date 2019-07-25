@@ -11,6 +11,7 @@ import Contacts
 
 class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelegate, NSTableViewDataSource {
 
+    @IBOutlet var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var searchField: NSSearchField!
     @IBOutlet weak var tableView: NSTableView!
     
@@ -38,18 +39,22 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     }
     
     @IBAction func search(_ sender: Any) {
-        clearSearchResults()
         let query = searchField.stringValue
         if query.isEmpty {
             return
         }
-        for row in try! (DataStore.shared.db?.run("SELECT text,date,id FROM message JOIN handle ON handle.ROWID=message.handle_id WHERE text LIKE'%\(query)%' ORDER BY date ASC LIMIT 60"))!{
+        clearSearchResults()
+        progressIndicator.startAnimation(sender)
+        progressIndicator.display()
+        for row in try! (DataStore.shared.db?.run("SELECT text,date,id FROM message JOIN handle ON handle.ROWID=message.handle_id WHERE text LIKE'%\(query)%' ORDER BY date ASC LIMIT 30"))!{
             if let text = row[0] as? String, let date = row[1] as? Int64, let id = row[2] as? String{
                 let message = Message(text: text, date: date, id: id)
                 searchResults.append(message)
                 reloadData()
             }
         }
+//        progressIndicator.stopAnimation(sender)
+
     }
     @objc func tableViewDoubleClick(_ sender:AnyObject) {
         let url = URL(fileURLWithPath: "messages://open?message-guid=9B078248-4068-48E5-A1E2-F31C98FDD1D2")
