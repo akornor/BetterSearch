@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem.button?.title = "🔍"
         statusItem.button?.target = self
-        statusItem.button?.action = #selector(showSettings)
+        statusItem.button?.action = #selector(showApp)
         
         popoverView.contentViewController = ViewController.getViewController()
         
@@ -29,14 +29,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         let firstRun = UserDefaults.standard.bool(forKey: "firstRun")
         if (!firstRun){
-            print("indexing")
+            print("indexing messages...")
 //            try! DataStore.shared.db?.run("CREATE VIRTUAL TABLE message_idx USING fts5(guid, text, date);")
 //            try! DataStore.shared.db?.run("INSERT INTO message_idx SELECT guid, text, date FROM message;")
             UserDefaults.standard.set(true, forKey: "firstRun")
         }
     }
     
-    @objc func showSettings() {
+    @objc func showApp() {
         if popoverView.isShown{
             closePopover(sender: nil)
         }else{
