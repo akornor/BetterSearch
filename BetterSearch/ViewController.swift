@@ -33,7 +33,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         }
     }
     
-    func clearSearchResults(){
+    private func clearSearchResults(){
         searchResults = []
         reloadData()
     }
@@ -63,7 +63,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     }
 
     
-    func reloadData(){
+    private func reloadData(){
         tableView.reloadData()
     }
     
