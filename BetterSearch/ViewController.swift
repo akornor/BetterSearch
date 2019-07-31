@@ -100,7 +100,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         if let id = message.id, let text = message.text, let date = message.date {
             cell.messageTextField?.attributedStringValue = boldedString(with: text, searchString: query, fontSize: 13)!
             cell.contactTextField.stringValue = id
-            cell.dateTextField.stringValue = String(date)
+            cell.dateTextField.stringValue = date.date()
         }
         return cell
 }
@@ -113,5 +113,14 @@ extension ViewController{
             fatalError("Unable to find ViewController in the storyboard.")
         }
         return vc
+    }
+}
+
+extension Int64{
+    func date() -> String {
+        let date = Date(timeIntervalSinceReferenceDate: TimeInterval(self/1000000000))
+        let df = DateFormatter()
+        df.dateFormat = "MMM d, yyyy"
+        return df.string(from: date)
     }
 }
