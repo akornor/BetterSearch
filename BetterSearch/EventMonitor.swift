@@ -2,7 +2,7 @@
 //  EventMonitor.swift
 //  BetterSearch
 //
-//  Created by Mac on 7/11/19.
+//  Created by Raymond Akornor on 7/11/19.
 //  Copyright © 2019 FiniteLoop. All rights reserved.
 //
 
