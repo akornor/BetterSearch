@@ -53,13 +53,16 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
                 reloadData()
             }
         }
-        progressIndicator.stopAnimation(sender)
 
     }
     @objc func tableViewDoubleClick(_ sender:AnyObject) {
         let url = URL(fileURLWithPath: "messages://open?message-guid=9B078248-4068-48E5-A1E2-F31C98FDD1D2")
         NSWorkspace.shared.open(url)
         print("double clicked")
+    }
+    
+    func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
+        progressIndicator.stopAnimation(nil)
     }
 
     
@@ -113,14 +116,5 @@ extension ViewController{
             fatalError("Unable to find ViewController in the storyboard.")
         }
         return vc
-    }
-}
-
-extension Int64{
-    func date() -> String {
-        let date = Date(timeIntervalSinceReferenceDate: TimeInterval(self/1000000000))
-        let df = DateFormatter()
-        df.dateFormat = "MMM d, yyyy"
-        return df.string(from: date)
     }
 }
