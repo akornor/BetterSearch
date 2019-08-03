@@ -46,7 +46,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         clearSearchResults()
         progressIndicator.startAnimation(sender)
         progressIndicator.display()
-        for row in try! (DataStore.shared.db?.run("select text, date, id from MessageSearch JOIN handle ON handle.ROWID=MessageSearch.handle_id  where MessageSearch match 'NEAR(\(query))' ORDER BY rank"))!{
+        for row in try! (DataStore.shared.db?.run("select text, date, id from MessageSearch JOIN handle ON handle.ROWID=MessageSearch.handle_id  where text match '\(query)' ORDER BY rank"))!{
             if let text = row[0] as? String, let date = row[1] as? Int64, let id = row[2] as? String{
                 let message = Message(text: text, date: date, id: id)
                 searchResults.append(message)
