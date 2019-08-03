@@ -65,7 +65,6 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         progressIndicator.stopAnimation(nil)
     }
 
-    
     private func reloadData(){
         tableView.reloadData()
     }

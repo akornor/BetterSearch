@@ -30,8 +30,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let firstRun = UserDefaults.standard.bool(forKey: "firstRun")
         if (!firstRun){
             print("indexing messages...")
-//            try! DataStore.shared.db?.run("CREATE VIRTUAL TABLE message_idx USING fts5(guid, text, date);")
-//            try! DataStore.shared.db?.run("INSERT INTO message_idx SELECT guid, text, date FROM message;")
+//            try! DataStore.shared.db?.execute("""
+//                CREATE VIRTUAL TABLE MessageSearch USING fts5(guid UNINDEXED, text, date UNINDEXED, handle_id UNINDEXED, content=message);
+//                -- Triggers to keep the message index up to date.
+//                CREATE TRIGGER tbl_ai AFTER INSERT ON messages BEGIN
+//                  INSERT INTO MessageSearch(guid, text, date, handle_id) VALUES (new.guid, new.text, new.date, new.handle_id);
+//                END;
+//            """)
             UserDefaults.standard.set(true, forKey: "firstRun")
         }
     }
