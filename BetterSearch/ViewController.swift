@@ -50,9 +50,9 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
             if let text = row[0] as? String, let date = row[1] as? Int64, let id = row[2] as? String{
                 let message = Message(text: text, date: date, id: id)
                 searchResults.append(message)
-                reloadData()
             }
         }
+        reloadData()
 
     }
     @objc func tableViewDoubleClick(_ sender:AnyObject) {
