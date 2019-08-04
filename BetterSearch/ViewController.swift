@@ -77,7 +77,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         return searchResults.count
     }
     
-    private func boldedString(with baseString: String, searchString: String, fontSize: CGFloat) -> NSAttributedString? {
+    private func boldenString(with baseString: String, searchString: String, fontSize: CGFloat) -> NSAttributedString? {
         guard let regex = try? NSRegularExpression(pattern: searchString, options: .caseInsensitive) else {
             return nil
         }
@@ -100,9 +100,9 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         let message = searchResults[row]
         let query = searchField.stringValue
         if let id = message.id, let text = message.text, let date = message.date {
-            cell.messageTextField?.attributedStringValue = boldedString(with: text, searchString: query, fontSize: 13)!
-            cell.contactTextField.stringValue = id
-            cell.dateTextField.stringValue = date.date()
+            cell.messageTextField?.attributedStringValue = boldenString(with: text, searchString: query, fontSize: 13)!
+            cell.contactTextField?.stringValue = id
+            cell.dateTextField?.stringValue = date.date()
         }
         return cell
 }
