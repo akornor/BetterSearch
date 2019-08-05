@@ -34,6 +34,9 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
     }
     
     private func clearSearchResults(){
+        if searchResults.isEmpty{
+            return
+        }
         searchResults = []
         reloadData()
     }
@@ -55,7 +58,9 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
             }
         }
         progressIndicator.stopAnimation(sender)
-        reloadData()
+        if (!searchResults.isEmpty){
+            reloadData()
+        }
 
     }
     
