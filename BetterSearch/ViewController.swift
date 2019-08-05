@@ -46,25 +46,25 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         clearSearchResults()
         progressIndicator.startAnimation(sender)
         progressIndicator.display()
+         // see: https://forums.developer.apple.com/message/74446
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.02))
         for row in try! (DataStore.shared.db?.run("SELECT text, date, id FROM MessageSearch JOIN handle ON handle.ROWID=MessageSearch.handle_id  WHERE text MATCH '\(query)' ORDER BY rank"))!{
             if let text = row[0] as? String, let date = row[1] as? Int64, let id = row[2] as? String{
                 let message = Message(text: text, date: date, id: id)
                 searchResults.append(message)
             }
         }
+        progressIndicator.stopAnimation(sender)
         reloadData()
 
     }
+    
     @objc func tableViewDoubleClick(_ sender:AnyObject) {
         let url = URL(fileURLWithPath: "messages://open?message-guid=9B078248-4068-48E5-A1E2-F31C98FDD1D2")
         NSWorkspace.shared.open(url)
         print("double clicked")
     }
     
-    func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
-        progressIndicator.stopAnimation(nil)
-    }
-
     private func reloadData(){
         tableView.reloadData()
     }
