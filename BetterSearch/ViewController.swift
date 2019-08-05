@@ -48,7 +48,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         progressIndicator.display()
          // see: https://forums.developer.apple.com/message/74446
         RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.02))
-        for row in try! (DataStore.shared.db?.run("SELECT text, date, id FROM MessageSearch JOIN handle ON handle.ROWID=MessageSearch.handle_id  WHERE text MATCH '\(query)' ORDER BY rank"))!{
+        for row in try! DataStore.shared.search(for: query){
             if let text = row[0] as? String, let date = row[1] as? Int64, let id = row[2] as? String{
                 let message = Message(text: text, date: date, id: id)
                 searchResults.append(message)

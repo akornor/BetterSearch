@@ -25,4 +25,8 @@ class DataStore{
             fatalError("Unable to make connection to database")
         }
     }
+    
+    public func search(for query: String) throws -> Statement {
+        return try! (db?.run("SELECT text, date, id FROM MessageSearch JOIN handle ON handle.ROWID=MessageSearch.handle_id  WHERE text MATCH '\(query)' ORDER BY rank"))!
+    }
 }
