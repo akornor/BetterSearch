@@ -104,8 +104,8 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
         }
         let message = searchResults[row]
         let query = searchField.stringValue
-        if let id = message.id, let text = message.text, let date = message.date {
-            cell.messageTextField?.attributedStringValue = boldenString(with: text, searchString: query, fontSize: 13)!
+        if let id = message.id, let text = boldenString(with: message.text ?? "", searchString: query, fontSize: 13), let date = message.date {
+            cell.messageTextField?.attributedStringValue = text
             cell.contactTextField?.stringValue = id
             cell.dateTextField?.stringValue = date.date()
         }
