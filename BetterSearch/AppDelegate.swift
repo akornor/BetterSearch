@@ -28,15 +28,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         let firstRun = UserDefaults.standard.bool(forKey: "firstRun")
-        if (!firstRun){
-            print("indexing messages...")
-//            try! DataStore.shared.db?.execute("""
-//                CREATE VIRTUAL TABLE MessageSearch USING fts5(guid UNINDEXED, text, date UNINDEXED, handle_id UNINDEXED, content=message);
-//                -- Triggers to keep the message index up to date.
-//                CREATE TRIGGER tbl_ai AFTER INSERT ON messages BEGIN
-//                  INSERT INTO MessageSearch(guid, text, date, handle_id) VALUES (new.guid, new.text, new.date, new.handle_id);
-//                END;
-//            """)
+        if (!firstRun && !development){
+            NSLog("indexing messages...")
+            try! DataStore.shared.db?.execute("""
+                CREATE VIRTUAL TABLE IF NOT EXISTS MessageSearch USING fts5(guid UNINDEXED, text, date UNINDEXED, handle_id UNINDEXED);
+                INSERT INTO MessageSearch SELECT guid, text, date, handle_id FROM message;
+                -- Triggers to keep the message index up to date.
+                CREATE TRIGGER IF NOT EXISTS tbl_ai AFTER INSERT ON message BEGIN
+                  INSERT INTO MessageSearch(guid, text, date, handle_id) VALUES (new.guid, new.text, new.date, new.handle_id);
+                END;
+            """)
             UserDefaults.standard.set(true, forKey: "firstRun")
         }
     }
