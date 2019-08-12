@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 CREATE VIRTUAL TABLE IF NOT EXISTS MessageSearch USING fts5(guid UNINDEXED, text, date UNINDEXED, handle_id UNINDEXED);
                 INSERT INTO MessageSearch SELECT guid, text, date, handle_id FROM message;
                 -- Triggers to keep the message index up to date.
-                CREATE TRIGGER IF NOT EXISTS tbl_ai AFTER INSERT ON message BEGIN
+                CREATE TRIGGER IF NOT EXISTS update_message_index AFTER INSERT ON message BEGIN
                   INSERT INTO MessageSearch(guid, text, date, handle_id) VALUES (new.guid, new.text, new.date, new.handle_id);
                 END;
             """)
