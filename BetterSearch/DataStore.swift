@@ -14,12 +14,18 @@ class DataStore{
     let db: Connection?
     
     init() {
-        // Will change later
-        guard let url = Bundle.main.url(forResource: "chat", withExtension: "db") else{
-            fatalError("Unable to find database file.")
+        var dbPath: URL
+        if (!development){
+            let fileManager = FileManager.default
+            dbPath = fileManager.homeDirectoryForCurrentUser.appendingPathComponent("/Library/Messages/chat.db")
+        }else{
+            guard let url = Bundle.main.url(forResource: "chat", withExtension: "db") else{
+                fatalError("Unable to find database file.")
+            }
+            dbPath = url
         }
         do {
-            db = try Connection(url.absoluteString, readonly: true)
+            db = try Connection(dbPath.absoluteString)
         } catch let error {
             print(error.localizedDescription)
             fatalError("Unable to make connection to database")
