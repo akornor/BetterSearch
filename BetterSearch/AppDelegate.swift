@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         let firstRun = UserDefaults.standard.bool(forKey: "firstRun")
         if (!firstRun && !development){
-            NSLog("indexing messages...")
+            NSLog("Indexing messages...")
             try! DataStore.shared.db?.execute("""
                 CREATE VIRTUAL TABLE IF NOT EXISTS MessageSearch USING fts5(guid UNINDEXED, text, date UNINDEXED, handle_id UNINDEXED);
                 INSERT INTO MessageSearch SELECT guid, text, date, handle_id FROM message;

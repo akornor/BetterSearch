@@ -12,9 +12,9 @@ import SQLite
 class DataStore{
     static let shared = DataStore()
     let db: Connection?
+    var dbPath: URL
     
     init() {
-        var dbPath: URL
         if (!development){
             let fileManager = FileManager.default
             dbPath = fileManager.homeDirectoryForCurrentUser.appendingPathComponent("/Library/Messages/chat.db")
