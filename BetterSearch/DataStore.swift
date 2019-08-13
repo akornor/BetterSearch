@@ -16,8 +16,14 @@ class DataStore{
     
     init() {
         if (!development){
-            let fileManager = FileManager.default
-            dbPath = fileManager.homeDirectoryForCurrentUser.appendingPathComponent("/Library/Messages/chat.db")
+            func realHomeDirectory() -> URL? {
+                guard let pw = getpwuid(getuid()) else { return nil }
+                return URL(fileURLWithFileSystemRepresentation: pw.pointee.pw_dir, isDirectory: true, relativeTo: nil)
+            }
+            guard let url = realHomeDirectory() else{
+                fatalError("Unable to get users home directory.")
+            }
+            dbPath = url.appendingPathComponent("/Library/Messages/chat.db")
         }else{
             guard let url = Bundle.main.url(forResource: "chat", withExtension: "db") else{
                 fatalError("Unable to find database file.")
