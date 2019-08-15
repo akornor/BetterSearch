@@ -11,12 +11,12 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     var eventMonitor: EventMonitor?
     let popoverView = NSPopover()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem.button?.title = "🔍"
+        statusItem.button?.image = NSImage(named: NSImage.Name("logo"))
         statusItem.button?.target = self
         statusItem.button?.action = #selector(showApp)
         
