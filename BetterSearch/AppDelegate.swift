@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem.button?.image = NSImage(named: NSImage.Name("logo"))
+        statusItem.button?.image?.isTemplate = true
         statusItem.button?.target = self
         statusItem.button?.action = #selector(showApp)
         
