@@ -34,11 +34,6 @@ class DataStore{
             db = try Connection(dbPath.absoluteString)
         } catch let error {
             print(error.localizedDescription)
-            let alert = NSAlert()
-            alert.messageText = "Unable to make connection to database."
-            alert.informativeText = error.localizedDescription
-            alert.alertStyle = .informational
-            alert.runModal()
             fatalError("Unable to make connection to database")
         }
     }

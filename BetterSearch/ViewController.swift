@@ -110,7 +110,7 @@ class ViewController: NSViewController, NSSearchFieldDelegate, NSTableViewDelega
             cell.dateTextField?.stringValue = date.date()
         }
         return cell
-}
+    }
 }
 
 extension ViewController{
